@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 
 const ViewStory = () => {
 
@@ -7,18 +7,22 @@ const ViewStory = () => {
 
   const [story, setStory] = useState(null);
 
+  // const navigate = useNavigate();
+
   useEffect(()=>{
     fetch(`http://localhost:3000/story/${id}`)
     .then(data => data.json())
     .then(data => setStory(data))
     .catch(err => console.log(err))
 
-  },[]);
+  },[id]);
 
   return (
     <div>
-      {story? <div>
-        <img src={story.username} alt="story" />
+      {story? <div className='d-flex justify-content-center align-items-center'>
+        <Link to={`http://localhost:5173/story/${Number(id)-1}`}><i class="bi bi-arrow-left-circle-fill"></i></Link>
+        <img className='vh-100' src={story.image} alt="story" />
+        <Link to={`http://localhost:5173/story/${Number(id)+1}`}><i class="bi bi-arrow-right-circle-fill"></i></Link>
       </div> : 
       
       <div>Loading</div>}
