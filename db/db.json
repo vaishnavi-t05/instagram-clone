@@ -1,0 +1,95 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "username": "Edward",
+      "profilePic": "src/assets/150.jpg",
+      "location": "Chennai, India",
+      "image": "src/assets/p1.jpg",
+      "caption": "Lost in nature 🌿✨",
+      "likes": 2456,
+      "comments": 124,
+      "isLiked": false,
+      "timestamp": "2026-06-28T18:30:00Z"
+    },
+    {
+      "id": 2,
+      "username": "Lee Min",
+      "profilePic": "src/assets/150 (1).jpg",
+      "location": "New York, USA",
+      "image": "src/assets/p2.jpg",
+      "caption": "Weekend vibes 😎",
+      "likes": 5821,
+      "comments": 312,
+      "isLiked": true,
+      "timestamp": "2026-06-28T15:45:00Z"
+    },
+    {
+      "id": 3,
+      "username": "emma_watson",
+      "profilePic": "src/assets/150 (2).jpg",
+      "location": "London, UK",
+      "image": "src/assets/p3.jpg",
+      "caption": "Coffee + Books = Happiness ☕📚",
+      "likes": 9843,
+      "comments": 542,
+      "isLiked": false,
+      "timestamp": "2026-06-28T10:20:00Z"
+    }
+],
+"profile":{
+      "id": 1,
+      "username": "Edward",
+      "profilePic": "src/assets/150.jpg"
+},
+"suggestions":[
+  {
+    "id": 1,
+      "username": "Edward",
+      "profilePic": "src/assets/150.jpg"
+  },
+  {
+    "id": 2,
+      "username": "Lee Min",
+      "profilePic": "src/assets/150 (1).jpg"
+  },
+  {
+    "id": 3,
+      "username": "emma_watson",
+      "profilePic": "src/assets/150 (2).jpg"
+  },
+  {
+    "id": 4,
+      "username": "emma",
+      "profilePic": "src/assets/150 (2).jpg"
+  },
+  {
+    "id": 5,
+      "username": "watson",
+      "profilePic": "src/assets/150 (2).jpg"
+  }
+],
+ "story": [
+    {
+      "id": 1,
+      "username": "Edward",
+      "profilePic": "src/assets/150.jpg",
+      "location": "Chennai, India",
+      "image": "src/assets/pics1.jpg"
+    },
+    {
+      "id": 2,
+      "username": "Lee Min",
+      "profilePic": "src/assets/150 (1).jpg",
+      "location": "New York, USA",
+      "image": "src/assets/pic2.jpg"
+    },
+    {
+      "id": 3,
+      "username": "emma_watson",
+      "profilePic": "src/assets/150 (2).jpg",
+      "location": "London, UK",
+      "image": "src/assets/pic3.jpg"
+    }
+]
+}
