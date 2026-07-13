@@ -18,7 +18,7 @@ const ViewStory = () => {
   return (
     <div>
       {story? <div>
-        <img src={story.image} alt="" />
+        <img src={story.username} alt="story" />
       </div> : 
       
       <div>Loading</div>}
