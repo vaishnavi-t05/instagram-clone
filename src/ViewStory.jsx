@@ -18,7 +18,7 @@ const ViewStory = () => {
   },[id]);
 
   if (id > tot || id<=0){
-    navigate('/');
+    navigate('/home');
   }
 
   return (

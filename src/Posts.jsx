@@ -13,7 +13,7 @@ const Posts = () => {
     console.log(posts)
 
   return (
-    <div className='d-flex justify-content-center'>
+    <div className='post d-flex justify-content-center '>
       {posts.length > 0 ? (
         <div>
            {posts.map((post)=>(
@@ -28,7 +28,7 @@ const Posts = () => {
                 <i className="bi bi-chat"></i>
                 <i className="bi bi-send"></i>
                 <div>
-                  <b>{post.likes} Likes</b>
+                  <p className='my-1'>{post.likes} Likes</p>
                 </div>
                 <p>{post.caption}</p>
 

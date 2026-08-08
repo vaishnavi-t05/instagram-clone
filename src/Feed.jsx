@@ -5,7 +5,7 @@ import Posts from './Posts'
 
 const Feed = () => {
   return (
-    <div>
+    <div className='Feed'>
         <div><Stories/></div>
         <div><Posts/></div>
      

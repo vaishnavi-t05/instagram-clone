@@ -17,6 +17,7 @@
 .story{
   height: 70px;
   padding: 19px;
+  background-color: #ffffff;
 }
 
 .dp{
@@ -26,8 +27,24 @@
 }
 
 .image{
-  width: 300px;
+    width: 470px;
+    height: 587px;
+    object-fit: cover;
+    border-radius: 4px;
 }
+.image{
+    width: 470px;
+    height: 470px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 150px;
+}
+.post{
+    width: 470px;
+    margin: 20px auto;
+    background: #fff;
+}
+
 
 .suggestions h5{
   font-size: 16px;
@@ -50,3 +67,25 @@
 .story-dp{
   width: 40px;
 }
+
+.Sideadjust{
+  margin: 5px;
+  position: fixed;
+  margin-left: 80px;
+  background-color: #ffffff;
+  border-right: 1px solid #dbdbdb;
+  height: 100vh;
+  padding: 30px 20px;
+}
+
+.suggestions{
+  background-color: #ffffff;
+  border-left: 1px solid #dbdbdb;
+  height: 100vh;
+  padding: 30px 20px;
+}
+
+.logo-text :hover{
+  cursor: pointer;
+}
+
