@@ -3,9 +3,9 @@
     {
       "id": 1,
       "username": "Edward",
-      "profilePic": "/150.jpg",
+      "profilePic": "src/assets/150.jpg",
       "location": "Chennai, India",
-      "image": "/p1.jpg",
+      "image": "src/assets/p1.jpg",
       "caption": "Lost in nature 🌿✨",
       "likes": 2456,
       "comments": 124,
@@ -15,9 +15,9 @@
     {
       "id": 2,
       "username": "Lee Min",
-      "profilePic": "/150 (1).jpg",
+      "profilePic": "src/assets/150 (1).jpg",
       "location": "New York, USA",
-      "image": "/p2.jpg",
+      "image": "src/assets/p2.jpg",
       "caption": "Weekend vibes 😎",
       "likes": 5821,
       "comments": 312,
@@ -27,9 +27,9 @@
     {
       "id": 3,
       "username": "emma_watson",
-      "profilePic": "/150 (2).jpg",
+      "profilePic": "src/assets/150 (2).jpg",
       "location": "London, UK",
-      "image": "/p3.jpg",
+      "image": "src/assets/p3.jpg",
       "caption": "Coffee + Books = Happiness ☕📚",
       "likes": 9843,
       "comments": 542,
@@ -37,79 +37,76 @@
       "timestamp": "2026-06-28T10:20:00Z"
     },
     {
-      "id": 4,
-      "username": "Sophia",
-      "profilePic": "/pic4.jpg",
-      "location": "Paris, France",
-      "image": "/st4.jpg",
-      "caption": "Every sunset is a new beginning 🌅✨",
-      "likes": 4218,
-      "comments": 198,
-      "isLiked": false,
-      "timestamp": "2026-07-01T17:20:00Z"
-    }
-  ],
-
-  "profile": {
+  "id": 4,
+  "username": "Sophia",
+  "profilePic": "src/assets/pic4.jpg",
+  "location": "Paris, France",
+  "image": "src/assets/st4.jpg",
+  "caption": "Every sunset is a new beginning 🌅✨",
+  "likes": 4218,
+  "comments": 198,
+  "isLiked": false,
+  "timestamp": "2026-07-01T17:20:00Z"
+}
+],
+"profile":{
+      "id": 1,
+      "username": "Edward",
+      "profilePic": "src/assets/150.jpg"
+},
+"suggestions":[
+  {
     "id": 1,
-    "username": "Edward",
-    "profilePic": "/150.jpg"
+      "username": "Edward",
+      "profilePic": "src/assets/150.jpg"
   },
-
-  "suggestions": [
-    {
-      "id": 1,
-      "username": "Edward",
-      "profilePic": "/150.jpg"
-    },
-    {
-      "id": 2,
+  {
+    "id": 2,
       "username": "Lee Min",
-      "profilePic": "/150 (1).jpg"
-    },
-    {
-      "id": 3,
+      "profilePic": "src/assets/150 (1).jpg"
+  },
+  {
+    "id": 3,
       "username": "emma_watson",
-      "profilePic": "/150 (2).jpg"
-    },
-    {
-      "id": 4,
+      "profilePic": "src/assets/150 (2).jpg"
+  },
+  {
+    "id": 4,
       "username": "emma",
-      "profilePic": "/150 (2).jpg"
-    },
-    {
-      "id": 5,
+      "profilePic": "src/assets/150 (2).jpg"
+  },
+  {
+    "id": 5,
       "username": "watson",
-      "profilePic": "/150 (2).jpg"
-    },
-    {
-      "id": 6,
-      "username": "Sophia",
-      "profilePic": "/pic4.jpg"
-    }
-  ],
-
-  "story": [
+      "profilePic": "src/assets/150 (2).jpg"
+  },
+  {
+    "id": 4,
+  "username": "Sophia",
+  "profilePic": "src/assets/pic4.jpg"
+  }
+],
+ "story": [
     {
       "id": 1,
       "username": "Edward",
-      "profilePic": "/150.jpg",
+      "profilePic": "src/assets/150.jpg",
       "location": "Chennai, India",
-      "image": "/pics1.jpg"
+      "image": "/src/assets/pics1.jpg"
     },
     {
       "id": 2,
       "username": "Lee Min",
-      "profilePic": "/150 (1).jpg",
+      "profilePic": "src/assets/150 (1).jpg",
       "location": "New York, USA",
-      "image": "/pic2.jpg"
+      "image": "/src/assets/pic2.jpg"
     },
     {
       "id": 3,
       "username": "emma_watson",
-      "profilePic": "/150 (2).jpg",
+      "profilePic": "src/assets/150 (2).jpg",
       "location": "London, UK",
-      "image": "/pic3.jpg"
+      "image": "/src/assets/pic3.jpg"
     }
-  ]
+]
 }
