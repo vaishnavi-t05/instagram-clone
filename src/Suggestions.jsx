@@ -1,81 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Suggestions = () => {
-  const [profile, setProfile] = useState(null);
-  const [Suggestions, setSuggestions] = useState([]);
+const API_URL = "http://localhost:5000";
+
+function Suggestions() {
+  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    fetch('https://instagram-clone-x2e2.onrender.com/profile')
-      .then((data) => data.json())
-      .then((data) => setProfile(data))
-      .catch((err) => console.log(err));
-
-    fetch('https://instagram-clone-x2e2.onrender.com/suggestions')
-      .then((data) => data.json())
-      .then((data) => setSuggestions(data))
-      .catch((err) => console.log(err));
+    axios
+      .get(`${API_URL}/suggestions`)
+      .then((response) => {
+        setSuggestions(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching suggestions:", error);
+      });
   }, []);
 
   return (
-    <div>
-      <div className="suggestions m-4">
+    <div className="suggestions">
 
-        {profile ? (
-          <div className="d-flex">
-            <img
-              className="dp rounded-circle m"
-              src={profile.profilePic}
-              alt="Profile pic"
-            />
+      <h4>Suggestions for you</h4>
 
-            <h5>{profile.username}</h5>
+      {suggestions.map((user) => (
+        <div className="suggestion" key={user.id}>
 
-            <small className="ms-auto text-primary">
-              Switch
-            </small>
+          <img
+            src={user.profilePic}
+            alt={user.username}
+          />
+
+          <div>
+            <strong>{user.username}</strong>
+            <p>{user.name}</p>
           </div>
-        ) : (
-          <p>Loading</p>
-        )}
 
-        <div className="d-flex my-2">
-          <p>Suggested for you</p>
-          <b className="ms-auto">See All</b>
+          <button>Follow</button>
+
         </div>
+      ))}
 
-        {Suggestions.length > 0 ? (
-          <div>
-            {Suggestions.map((suggestion) => (
-              <div className="my-2" key={suggestion.id}>
-                <div className="d-flex">
-
-                  <img
-                    className="dp rounded-circle"
-                    src={suggestion.profilePic}
-                    alt="Profile pic"
-                  />
-
-                  <h5>{suggestion.username}</h5>
-
-                  <div>
-                    <p className="text-primary ms-auto">
-                      Follow
-                    </p>
-                  </div>
-
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div>
-            Loading
-          </div>
-        )}
-
-      </div>
     </div>
   );
-};
+}
 
 export default Suggestions;

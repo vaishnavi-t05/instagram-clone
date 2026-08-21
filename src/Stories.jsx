@@ -1,56 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Stories = () => {
+const API_URL = "http://localhost:5000";
+
+function Stories() {
   const [stories, setStories] = useState([]);
-  const navigate = useNavigate();
-  let tot = 0;
 
   useEffect(() => {
-    fetch('https://instagram-clone-x2e2.onrender.com/story')
-      .then((data) => data.json())
-      .then((data) => setStories(data))
-      .catch((err) => console.log(err));
+    axios
+      .get(`${API_URL}/story`)
+      .then((response) => {
+        setStories(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching stories:", error);
+      });
   }, []);
 
-  console.log(stories);
-
   return (
-    <div className="story d-flex">
-      <div className="d-none">
-        {tot = stories.length}
-      </div>
-
-      {stories.length > 0 ? (
-        stories.map((story) => (
-          <div
-            key={story.id}
-            className="mx-1"
-            onClick={() => {
-              navigate(`/story/${story.id}/${tot}`);
-            }}
-          >
-            <div className="gradient-border">
-              <img
-                src={story.profilePic}
-                alt="dp"
-                className="story-dp rounded-circle"
-              />
-            </div>
-
-            <p
-              className="text-truncate"
-              style={{ width: '50px' }}
-            >
-              {story.username}
-            </p>
-          </div>
-        ))
-      ) : (
-        <p>Loading</p>
-      )}
+    <div className="stories-container">
+      {stories.map((story) => (
+        <div className="story" key={story.id}>
+          <img src={story.image} alt={story.username} />
+          <p>{story.username}</p>
+        </div>
+      ))}
     </div>
   );
-};
+}
 
 export default Stories;

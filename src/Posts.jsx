@@ -1,53 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Posts = () => {
+const API_URL = "http://localhost:5000";
+
+function Posts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://instagram-clone-x2e2.onrender.com/posts')
-      .then((data) => data.json())
-      .then((data) => setPosts(data))
-      .catch((err) => console.log(err));
+    axios
+      .get(`${API_URL}/posts`)
+      .then((response) => {
+        setPosts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching posts:", error);
+      });
   }, []);
 
-  console.log(posts);
-
   return (
-    <div className="post d-flex justify-content-center">
-      {posts.length > 0 ? (
-        <div>
-          {posts.map((post) => (
-            <div className="my-3" key={post.id}>
-              <div className="d-flex">
-                <img
-                  className="dp rounded-circle"
-                  src={post.profilePic}
-                  alt="Profile pic"
-                />
-                <h5>{post.username}</h5>
-              </div>
+    <div className="posts-container">
+      {posts.map((post) => (
+        <div className="post-card" key={post.id}>
 
-              <img className="image" src={post.image} alt="" />
+          <div className="post-header">
+            <img
+              src={post.profilePic}
+              alt={post.username}
+              className="post-profile"
+            />
 
-              <div>
-                <i className="bi bi-heart"></i>
-                <i className="bi bi-chat"></i>
-                <i className="bi bi-send"></i>
+            <span>{post.username}</span>
+          </div>
 
-                <div>
-                  <p className="my-1">{post.likes} Likes</p>
-                </div>
+          <img
+            src={post.image}
+            alt="Post"
+            className="post-image"
+          />
 
-                <p>{post.caption}</p>
-              </div>
-            </div>
-          ))}
+          <div className="post-actions">
+            ❤️ 💬 📤
+          </div>
+
+          <p>
+            <strong>{post.username}</strong> {post.caption}
+          </p>
+
         </div>
-      ) : (
-        <div>Loading Posts</div>
-      )}
+      ))}
     </div>
   );
-};
+}
 
 export default Posts;

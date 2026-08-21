@@ -1,50 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
-const ViewStory = () => {
-  const { id, tot } = useParams();
+const API_URL = "http://localhost:5000";
+
+function ViewStory() {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const [story, setStory] = useState(null);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
-    fetch(`https://instagram-clone-x2e2.onrender.com/story/${id}`)
-      .then((data) => data.json())
-      .then((data) => setStory(data))
-      .catch((err) => console.log(err));
+    axios
+      .get(`${API_URL}/story/${id}`)
+      .then((response) => {
+        setStory(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching story:", error);
+      });
   }, [id]);
 
-  if (Number(id) > Number(tot) || Number(id) <= 0) {
-    navigate('/home');
-    return null;
+  if (!story) {
+    return <p>Loading...</p>;
   }
 
   return (
-    <div>
-      {story ? (
-        <div className="d-flex justify-content-center align-items-center">
+    <div className="view-story">
 
-          <Link to={`/story/${Number(id) - 1}/${tot}`}>
-            <i className="bi bi-arrow-left-circle-fill"></i>
-          </Link>
+      <button onClick={() => navigate("/home")}>
+        ←
+      </button>
 
-          <img
-            className="vh-100"
-            src={story.image}
-            alt="story"
-          />
+      <img
+        src={story.image}
+        alt={story.username}
+      />
 
-          <Link to={`/story/${Number(id) + 1}/${tot}`}>
-            <i className="bi bi-arrow-right-circle-fill"></i>
-          </Link>
-
-        </div>
-      ) : (
-        <div>Loading</div>
-      )}
     </div>
   );
-};
+}
 
 export default ViewStory;
