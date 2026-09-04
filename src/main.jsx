@@ -9,7 +9,7 @@ import Signup from './Signup.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <Login />
   },
   {
     path: '/login',
@@ -20,9 +20,14 @@ const router = createBrowserRouter([
     element: <Signup />
   },
   {
+    path: '/home',
+    element: <App />
+  },
+  {
     path: '/story/:id/:tot',
     element: <ViewStory />
-  }
+  },
+  
 ])
 
 createRoot(document.getElementById('root')).render(

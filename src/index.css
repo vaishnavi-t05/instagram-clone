@@ -1,52 +1,197 @@
-.w-20{
+.w-20 {
   width: 20%;
 }
 
-.w-30{
+.w-30 {
   width: 30%;
 }
 
-.logo-text{
-  width: 120px;
+/* ========================= */
+/* INSTAGRAM LOGO */
+/* ========================= */
+
+.logo-text {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 15px;
 }
 
-.bi{
+
+/* ========================= */
+/* OTHER STYLES */
+/* ========================= */
+
+.bi {
   margin-right: 10px;
 }
 
-.story{
+.story {
   height: 70px;
   padding: 19px;
 }
 
-.dp{
-  height: 20px;
-  margin-top: 5px;
-  margin-right: 5px;
+.posts-container {
+  margin-top: 50px;
+  margin-left: 30PX;
+}
+.post {
+  width: 500px;
+  margin-bottom: 30px;
 }
 
-.image{
-  width: 300px;
+.post-header {
+  margin-bottom: 8px;
+  margin-left: 0;
 }
 
-.suggestions h5{
+.dp {
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+}
+
+.post-header h5 {
+  margin: 0;
+}
+
+.image {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.suggestions h5 {
   font-size: 16px;
 }
 
-.suggestions .dp{
+.suggestions .dp {
   margin-top: 0px;
 }
 
-.gradient-border{
-  width: 45px;
-  height: 45px;
+.gradient-border {
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 90%;
   background: linear-gradient(45deg, #ff00ff, #ff6600, #ffcc00);
 }
 
-.story-dp{
-  width: 40px;
+.story-dp {
+  width: 55px;
+}
+
+.w-25 {
+  margin-left: 60px;
+}
+
+
+/* ========================= */
+/* SIDEBAR */
+/* ========================= */
+
+.sidebar {
+  width: 55px;
+  z-index: 1000;
+}
+
+.sidebar-top {
+  width: 55px;
+}
+
+
+/* ========================= */
+/* SIDEBAR ITEMS */
+/* ========================= */
+
+.sidebar-item {
+  position: relative;
+  width: 45px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sidebar-item i {
+  font-size: 21px;
+  min-width: 40px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+
+/* ========================= */
+/* HIDE SIDEBAR TEXT */
+/* ========================= */
+
+.sidebar-label {
+  position: absolute;
+
+  left: 48px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+
+  padding: 7px 12px;
+
+  border-radius: 6px;
+
+  background: white;
+  color: #262626;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+
+  transition: opacity 0.2s ease;
+}
+
+
+/* ========================= */
+/* SHOW TEXT ONLY ON ICON HOVER */
+/* ========================= */
+
+.sidebar-item:hover .sidebar-label {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ========================= */
+/* ICON HOVER */
+/* ========================= */
+
+.sidebar-item:hover i {
+  transform: scale(1.05);
+}
+
+/* .sidebar-section {
+  border-right: 1px solid #dbdbdb;
+  min-height: 100vh;
+} */
+.sidebar-column {
+  border-right: 1px solid #dbdbdb;
+  min-height: 100vh;
+}
+
+.feed-column {
+  border-right: 1px solid #dbdbdb;
+  min-height: 100vh;
+}
+
+.sidebar-profile-pic {
+  width: 21px;
+  height: 21px;
+  min-width: 25px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin-left: 7px;
 }

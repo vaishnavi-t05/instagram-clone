@@ -1,47 +1,71 @@
 import React, { useEffect, useState } from 'react'
 
 const Posts = () => {
-    const [posts,setPosts]=useState([]);
+  const [posts, setPosts] = useState([])
 
-    useEffect(()=>{
-        fetch("http://localhost:3000/posts")
-        .then((data)=> data.json())
-        .then(data => setPosts(data))
-        .catch(err => console.log(err))
-    },[]);
+  useEffect(() => {
+    fetch("http://localhost:3000/posts")
+      .then((data) => data.json())
+      .then(data => setPosts(data))
+      .catch(err => console.log(err))
+  }, [])
 
-    console.log(posts)
+  console.log(posts)
 
   return (
-    <div className='d-flex justify-content-center'>
+    <div className="posts-container">
+
       {posts.length > 0 ? (
         <div>
-           {posts.map((post)=>(
-            <div className='my-3' key={post.id}>
-              <div className='d-flex'>
-                <img className='dp rounded-circle' src={post.profilePic} alt="Profile pic" />
+
+          {posts.map((post) => (
+
+            <div className="post" key={post.id}>
+
+              {/* DP + USERNAME */}
+              <div className="post-header d-flex align-items-center">
+                <img
+                  className="dp rounded-circle"
+                  src={post.profilePic}
+                  alt="Profile pic"
+                />
+
                 <h5>{post.username}</h5>
               </div>
-              <img className='image' src={post.image} alt="" />
-              <div>
+
+              {/* POST IMAGE */}
+              <img
+                className="image"
+                src={post.image}
+                alt=""
+              />
+
+              {/* ACTIONS */}
+              <div className="post-actions">
+
                 <i className="bi bi-heart"></i>
                 <i className="bi bi-chat"></i>
                 <i className="bi bi-send"></i>
+
                 <div>
                   <b>{post.likes} Likes</b>
                 </div>
+
                 <p>{post.caption}</p>
 
-                </div>
-                                
+              </div>
+
             </div>
-           ))}
-            </div>
-            ):(
-            <div>
-                Loading Posts
-                </div>
-              )}
+
+          ))}
+
+        </div>
+      ) : (
+        <div>
+          Loading Posts
+        </div>
+      )}
+
     </div>
   )
 }

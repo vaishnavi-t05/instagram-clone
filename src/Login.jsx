@@ -18,7 +18,7 @@ const Login = () => {
       alert("Login successful!");
 
       // Go to Instagram App
-      navigate("/");
+      navigate("/home");
 
     } catch (error) {
       console.log(error);
@@ -38,6 +38,7 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <br /><br />
 
         <input
           type="password"
@@ -46,6 +47,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <br /><br />
 
         <button type="submit">
           Login

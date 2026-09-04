@@ -7,72 +7,95 @@ const Sidebar = () => {
 
   const navigate = useNavigate()
 
-const handleLogout = async () => {
-  try {
-    await signOut(auth)
-    navigate('/login')
-  } catch (error) {
-    console.log(error)
+  const handleLogout = async () => {
+    try {
+      await signOut(auth)
+      navigate('/login')
+    } catch (error) {
+      console.log(error)
+    }
   }
-}
 
   return (
-    <div className='m-3 position-fixed'>
+    <div className="sidebar m-3 position-fixed sidebar-section">
 
-      <div className='d-flex flex-column gap-3'>
+      {/* TOP SIDEBAR */}
+      <div className="sidebar-top d-flex flex-column gap-3">
+
         <img
-          className='logo-text'
-          src="src\assets\instagram-images.png"
+          className="logo-text"
+          src="/assets/instagram-images.png"
           alt=""
         />
 
-        <div>
-          <i className="bi bi-house-door-fill"></i> Home
+        <div className="sidebar-item">
+          <i className="bi bi-house-door-fill"></i>
+          <span className="sidebar-label">Home</span>
         </div>
 
-        <div>
-          <i className="bi bi-search"></i> Search
+        <div className="sidebar-item">
+          <i className="bi bi-search"></i>
+          <span className="sidebar-label">Search</span>
         </div>
 
-        <div>
-          <i className="bi bi-compass"></i> Explore
+        <div className="sidebar-item">
+          <i className="bi bi-compass"></i>
+          <span className="sidebar-label">Explore</span>
         </div>
 
-        <div>
-          <i className="bi bi-play-btn"></i> Reels
+        <div className="sidebar-item">
+          <i className="bi bi-play-btn"></i>
+          <span className="sidebar-label">Reels</span>
         </div>
 
-        <div>
-          <i className="bi bi-chat"></i> Messages
+        <div className="sidebar-item">
+          <i className="bi bi-chat"></i>
+          <span className="sidebar-label">Messages</span>
         </div>
 
-        <div>
-          <i className="bi bi-heart"></i> Notifications
+        <div className="sidebar-item">
+          <i className="bi bi-heart"></i>
+          <span className="sidebar-label">Notifications</span>
         </div>
 
-        <div>
-          <i className="bi bi-plus-square"></i> Create
+        <div className="sidebar-item">
+          <i className="bi bi-plus-square"></i>
+          <span className="sidebar-label">Create</span>
         </div>
+        <div className="sidebar-item">
+  <img
+  src="/assets/profile.jpg"
+  className="rounded-circle sidebar-profile"
+  onClick={() => navigate("/profile")}
+  style={{ cursor: "pointer" }}
+/>
+  <span className="sidebar-label">Profile</span>
+</div>
 
-        <div>
-          <i className="bi bi-person-circle"></i> Profile
-        </div>
       </div>
 
-      <div className='position-fixed bottom-0 d-flex flex-column gap-3 mb-3'>
 
-        <div>
-          <i className="bi bi-threads"></i> Threads
+      {/* BOTTOM SIDEBAR */}
+      <div className="sidebar-bottom position-fixed bottom-0 d-flex flex-column gap-3 mb-3">
+
+        <div className="sidebar-item">
+          <i className="bi bi-threads"></i>
+          <span className="sidebar-label">Threads</span>
         </div>
 
-        <div>
-          <i className="bi bi-list"></i> More
+        <div className="sidebar-item">
+          <i className="bi bi-list"></i>
+          <span className="sidebar-label">More</span>
         </div>
 
         {/* LOGOUT */}
-        <div onClick={handleLogout}>
-  <i className="bi bi-box-arrow-right"></i> Logout
-</div>
+        <div
+          className="sidebar-item"
+          onClick={handleLogout}
+        >
+          <i className="bi bi-box-arrow-right"></i>
+          <span className="sidebar-label">Logout</span>
+        </div>
 
       </div>
 
