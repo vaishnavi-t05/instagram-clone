@@ -104,8 +104,8 @@ const Sidebar = () => {
           style={{ cursor: "pointer" }}
         >
           <img
-            src="public/assets/150.jpg"
-            className="rounded-circle sidebar-profile m-3"
+            src="/assets/150.jpg"
+            className="rounded-circle sidebar-profile"
             alt="Profile"
           />
           <span className="sidebar-label">Profile</span>
