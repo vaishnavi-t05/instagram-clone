@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { stories as storiesData } from './data';
 
 const Stories = () => {
   const [stories, setStories]=useState([]);
@@ -8,11 +9,8 @@ const Stories = () => {
 
 
   useEffect(()=>{
-    fetch('http://localhost:3000/story')
-    .then(data=> data.json())
-    .then(data=> setStories(data))
-    .catch(err=>console.log(err))
- },[]);
+    setStories(storiesData)
+  },[]);
 console.log(stories);
 
 
@@ -25,13 +23,13 @@ console.log(stories);
         </div>
       {stories. length > 0 ? (
           stories.map((story)=>(
-            <div key={story.id} className='mx-1' onClick={()=>{navigate(`/story/${story.id}/${tot}`)}}>
+            <div key={story.id} className='mx-1 d-flex flex-column align-items-center' onClick={()=>{navigate(`/story/${story.id}/${tot}`)}}>
               <div className='gradient-border'>
-                <img src={story.profilePic} alt="dp"  className='story-dp rounded-circle'/>
+                <img src={story.profilePic} alt="dp"  className='story-dp'/>
               </div>
-                
-                <p className='text-truncate' style={{width:"50px"}}>{story.username}</p>
-          </div>
+
+                <p className='story-user'>{story.username}</p>
+            </div>
 
         ))
 

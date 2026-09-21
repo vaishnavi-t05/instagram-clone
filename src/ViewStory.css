@@ -1,0 +1,269 @@
+.vs-page {
+  min-height: 100vh;
+  background: #fff;
+  color: #262626;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.vs-logo {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 110px;
+}
+
+.vs-close {
+  position: absolute;
+  top: 14px;
+  right: 22px;
+  background: none;
+  border: none;
+  color: #262626;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.vs-stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  padding: 20px;
+}
+
+/* CENTER CARD */
+.vs-card {
+  position: relative;
+  width: min(430px, 86vw);
+  aspect-ratio: 9 / 16;
+  max-height: 92vh;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  flex-shrink: 0;
+}
+
+.vs-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vs-progress {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+}
+.vs-seg {
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+}
+.vs-seg.done {
+  background: #fff;
+}
+.vs-fill {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  transform-origin: left;
+  animation: vsFill linear forwards;
+}
+.vs-fill.paused {
+  animation-play-state: paused;
+}
+@keyframes vsFill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.vs-head {
+  position: absolute;
+  top: 24px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 3;
+}
+.vs-ava {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.vs-head b {
+  font-size: 14px;
+}
+.vs-time {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+.vs-spacer {
+  flex: 1;
+}
+.vs-head button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.vs-reply {
+  position: absolute;
+  bottom: 14px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 3;
+}
+.vs-reply input {
+  flex: 1;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  padding: 12px 18px;
+  color: #fff;
+  outline: none;
+  font-size: 14px;
+}
+.vs-reply input::placeholder {
+  color: rgba(255, 255, 255, 0.9);
+}
+.vs-reply button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+.vs-reply button.liked {
+  color: #ff3040;
+}
+
+.vs-loading {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #262626;
+}
+
+/* SIDE PREVIEWS */
+.vs-side {
+  position: relative;
+  width: 200px;
+  aspect-ratio: 9 / 16;
+  max-height: 52vh;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: #f2f2f2;
+  border: 1px solid #dbdbdb;
+}
+.vs-side.empty {
+  visibility: hidden;
+}
+.vs-side-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+.vs-side-fade {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+}
+.vs-side-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.vs-ring {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(45deg, #ffd600, #ff7a00, #ff0069, #d300c5);
+}
+.vs-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+}
+.vs-side-center b {
+  font-size: 14px;
+  color: #262626;
+}
+.vs-side-center span {
+  font-size: 13px;
+  color: #737373;
+}
+
+.vs-arrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: #efefef;
+  color: #262626;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1000px) {
+  .vs-side {
+    display: none;
+  }
+  .vs-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .vs-logo {
+    width: 84px;
+    top: 12px;
+    left: 12px;
+  }
+  .vs-close {
+    font-size: 26px;
+    top: 8px;
+    right: 14px;
+  }
+  .vs-stage {
+    padding: 0;
+  }
+  .vs-card {
+    width: 100vw;
+    max-height: 100vh;
+    aspect-ratio: auto;
+    height: 100vh;
+    border-radius: 0;
+  }
+}

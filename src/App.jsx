@@ -2,23 +2,23 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Feed from './Feed'
 import Suggestions from './Suggestions'
+import Profile from "./Profile";
 
 const App = () => {
   return (
-    <div className='d-flex vh-100'>
-
+<div className="d-flex min-vh-100 home-page">
       {/* Sidebar */}
       <div className='w-20 sidebar-column'>
         <Sidebar />
       </div>
 
       {/* Feed */}
-      <div className='w-50 feed-column'>
+      <div className='w-50 feed-column home-feed'>
         <Feed />
       </div>
 
       {/* Suggestions */}
-      <div className='w-20'>
+      <div className='w-20 suggest-column'>
         <Suggestions />
       </div>
 

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase";
+import Sidebar from "./Sidebar";
+import { profile as profileData, posts as postsData } from "./data";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -7,61 +11,89 @@ const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    // Get your profile
-    fetch("http://localhost:3000/profile")
-      .then((res) => res.json())
-      .then((data) => {
-        setProfile(data);
-      })
-      .catch((err) => console.log(err));
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    // Get posts
-    fetch("http://localhost:3000/posts")
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-      })
-      .catch((err) => console.log(err));
+  useEffect(() => {
+    setProfile(profileData);
+
+    // IMPORTANT:
+    // Show only Edward's posts
+    const myPosts = postsData.filter(
+      (post) => post.username === profileData.username
+    );
+
+    setPosts(myPosts);
   }, []);
 
   if (!profile) {
-    return <div className="text-center mt-5">Loading...</div>;
+    return (
+      <div className="profile-layout">
+        <Sidebar />
+        <div className="profile-loading">
+          Loading...
+        </div>
+      </div>
+    );
   }
 
   return (
+    <div className="profile-layout">
+      <Sidebar />
     <div className="profile-page">
 
-      {/* TOP HEADER */}
+      {/* ================= HEADER ================= */}
+
       <div className="profile-header">
 
         <button
           className="back-btn"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/home")}
         >
           ←
         </button>
 
         <h5>{profile.username}</h5>
 
-        <span className="three-dots">⋮</span>
+        <span className="profile-head-actions">
+          <span className="three-dots">
+            ⋮
+          </span>
+          {/* <button
+            className="profile-logout"
+            onClick={handleLogout}
+            aria-label="Logout"
+          >
+            <i className="bi bi-box-arrow-right"></i>
+          </button> */}
+        </span>
 
       </div>
 
 
-      {/* PROFILE DETAILS */}
+      {/* ================= PROFILE INFO ================= */}
+
       <div className="profile-info">
 
         <div className="profile-top">
 
           {/* PROFILE IMAGE */}
+
           <img
             src={profile.profilePic}
             alt={profile.username}
             className="profile-picture"
           />
 
+
           {/* COUNTS */}
+
           <div className="profile-counts">
 
             <div>
@@ -70,12 +102,12 @@ const Profile = () => {
             </div>
 
             <div>
-              <strong>{profile.followers || 0}</strong>
+              <strong>120</strong>
               <span>Followers</span>
             </div>
 
             <div>
-              <strong>{profile.following || 0}</strong>
+              <strong>98</strong>
               <span>Following</span>
             </div>
 
@@ -84,33 +116,37 @@ const Profile = () => {
         </div>
 
 
-        {/* NAME + BIO */}
+        {/* ================= BIO ================= */}
+
         <div className="profile-bio">
 
           <strong>
-            {profile.name || profile.username}
+            {profile.username}
           </strong>
 
           <p>
-            {profile.bio || "Welcome to my profile ✨"}
+            Welcome to my profile ✨
           </p>
 
+          <div className="banner">
           <small>
-            @{profile.username}
+            +Add banners
           </small>
+          </div>
 
         </div>
 
 
-        {/* BUTTONS */}
+        {/* ================= BUTTONS ================= */}
+
         <div className="profile-buttons">
 
           <button className="follow-btn">
-            Follow
+            Edit profile
           </button>
 
           <button className="message-btn">
-            Message
+            Share profile
           </button>
 
           <button className="person-btn">
@@ -122,16 +158,23 @@ const Profile = () => {
       </div>
 
 
-      {/* HIGHLIGHTS */}
+      {/* ================= HIGHLIGHTS ================= */}
+
+      
+
       <div className="highlights">
+
+        {/* Highlight 1 */}
 
         <div className="highlight">
 
           <div className="highlight-circle">
+
             <img
-              src={profile.profilePic}
+              src="/assets/150.jpg"
               alt="Travel"
             />
+
           </div>
 
           <span>Travel</span>
@@ -139,27 +182,35 @@ const Profile = () => {
         </div>
 
 
-        <div className="highlight">
+        {/* Highlight 2 */}
+
+        {/* <div className="highlight">
 
           <div className="highlight-circle">
+
             <img
-              src={profile.profilePic}
+              src="/assets/150.jpg"
               alt="Friends"
             />
+
           </div>
 
-          <span>Friends</span>
+          <span>Friends</span> */}
 
-        </div>
+        {/* </div> */}
 
+
+        {/* Highlight 3 */}
 
         <div className="highlight">
 
           <div className="highlight-circle">
+
             <img
-              src={profile.profilePic}
+              src="/assets/150.jpg"
               alt="Life"
             />
+
           </div>
 
           <span>Life</span>
@@ -167,7 +218,8 @@ const Profile = () => {
         </div>
 
 
-        {/* ADD HIGHLIGHT */}
+        {/* Add Highlight */}
+
         <div className="highlight">
 
           <div className="highlight-circle add-highlight">
@@ -181,7 +233,8 @@ const Profile = () => {
       </div>
 
 
-      {/* PROFILE TABS */}
+      {/* ================= TABS ================= */}
+
       <div className="profile-tabs">
 
         <div className="active-tab">
@@ -199,7 +252,8 @@ const Profile = () => {
       </div>
 
 
-      {/* POSTS */}
+      {/* ================= POSTS ================= */}
+
       {posts.length === 0 ? (
 
         <div className="no-posts">
@@ -223,7 +277,7 @@ const Profile = () => {
             <img
               key={post.id}
               src={post.image}
-              alt="post"
+              alt={post.caption}
             />
 
           ))}
@@ -232,6 +286,7 @@ const Profile = () => {
 
       )}
 
+    </div>
     </div>
   );
 };

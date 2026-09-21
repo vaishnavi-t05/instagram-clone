@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import SwitchAccount from './SwitchAccount'
+import { profile as profileData, suggestions as suggestionsData } from './data'
 
 const Suggestions = () => {
 const [profile,setProfile]= useState(null);
 const [Suggestions,setSuggestions]=useState([]);
+const [showSwitch,setShowSwitch]=useState(false);
+const [followed,setFollowed]=useState({});
+
+const toggleFollow = (id) => {
+  setFollowed((f) => ({ ...f, [id]: !f[id] }));
+};
 
 useEffect(()=>{
-fetch("http://localhost:3000/profile")
-.then(data=> data.json())
-.then(data=> setProfile(data))
-.catch((err)=>console.log(err))
-
-fetch("http://localhost:3000/suggestions")
-.then(data=> data.json())
-.then(data=> setSuggestions(data))
-.catch((err)=>console.log(err))
-
-
+setProfile(profileData)
+setSuggestions(suggestionsData)
 },[])
 
   return (
@@ -25,7 +24,13 @@ fetch("http://localhost:3000/suggestions")
       <div className='d-flex'>
                 <img className='dp rounded-circle m' src={profile.profilePic} alt="Profile pic" />
                 <h5>{profile.username}</h5>
-                <small className='ms-auto text-primary'>Switch</small>
+                <small
+                  className='ms-auto text-primary'
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setShowSwitch(true)}
+                >
+                  Switch
+                </small>
               </div>
               : <p>Loading</p>}
 
@@ -41,7 +46,18 @@ fetch("http://localhost:3000/suggestions")
               <div className='d-flex'>
                 <img className='dp rounded-circle' src={suggestion.profilePic} alt="Profile pic" />
                 <h5>{suggestion.username}</h5>
-                <p className='text-primary ms-auto'>Follow</p>
+                <p
+                  className='ms-auto'
+                  style={{
+                    cursor: "pointer",
+                    color: followed[suggestion.id] ? "#737373" : "#0095f6",
+                    fontWeight: 600,
+                    margin: 0,
+                  }}
+                  onClick={() => toggleFollow(suggestion.id)}
+                >
+                  {followed[suggestion.id] ? "Following" : "Follow"}
+                </p>
               </div>            
             </div>
            ))}
@@ -52,8 +68,10 @@ fetch("http://localhost:3000/suggestions")
                 </div>
               )}
 
- </div>
-    </div>
+  </div>
+
+      {showSwitch && <SwitchAccount onClose={() => setShowSwitch(false)} />}
+     </div>
   )
 }
 
