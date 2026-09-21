@@ -1,9 +1,9 @@
-/* Dark split login matching reference screenshot */
+/* White split login — same layout as before, light theme */
 .ig-login-page {
   min-height: 100vh;
   display: flex;
-  background: #0b0e14;
-  color: #f5f5f5;
+  background: #ffffff;
+  color: #262626;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -14,9 +14,9 @@
   align-items: center;
   justify-content: center;
   padding: 60px 40px;
-  border-right: 1px solid #2a2e36;
-  background: radial-gradient(1200px 600px at 30% 20%, rgba(255,0,105,0.06), transparent),
-    #0b0e14;
+  border-right: 1px solid #dbdbdb;
+  background: radial-gradient(1200px 600px at 30% 20%, rgba(255,0,105,0.05), transparent),
+    #fafafa;
 }
 
 .ig-hero-inner {
@@ -37,7 +37,7 @@
   line-height: 1.25;
   letter-spacing: -0.3px;
   margin: 0 0 50px 0;
-  color: #e9ebee;
+  color: #262626;
 }
 
 .ig-gradient-text {
@@ -63,8 +63,8 @@
   border-radius: 22px;
   overflow: visible;
   position: relative;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
-  background: #1a1e26;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+  background: #efefef;
 }
 
 .ig-card img {
@@ -105,7 +105,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
 }
 
 .ig-reaction {
@@ -114,10 +114,11 @@
   left: -18px;
   background: #fff;
   color: #111;
+  border: 1px solid #dbdbdb;
   border-radius: 999px;
   padding: 4px 10px;
   font-size: 15px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
 .ig-star {
@@ -149,7 +150,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #0b0e14;
+  border: 2px solid #fff;
 }
 
 .ig-pill-row, .ig-icon-row {
@@ -183,7 +184,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #14161b;
+  background: #ffffff;
   padding: 48px 32px;
 }
 
@@ -198,7 +199,7 @@
   font-size: 18px;
   font-weight: 600;
   margin: 0 0 22px 4px;
-  color: #e8eaed;
+  color: #262626;
 }
 
 .ig-form {
@@ -209,8 +210,8 @@
 
 .ig-field {
   position: relative;
-  background: #1c212a;
-  border: 1px solid #363c47;
+  background: #fafafa;
+  border: 1px solid #dbdbdb;
   border-radius: 14px;
   padding: 22px 16px 8px 16px;
   display: block;
@@ -218,7 +219,7 @@
 }
 
 .ig-field:focus-within {
-  border-color: #e8eaed;
+  border-color: #a8a8a8;
   outline: 2px solid #4d9fff;
   outline-offset: 1px;
 }
@@ -228,7 +229,7 @@
   top: 16px;
   left: 16px;
   font-size: 15px;
-  color: #9aa0aa;
+  color: #737373;
   pointer-events: none;
   transition: all 0.15s;
 }
@@ -237,7 +238,7 @@
 .ig-field:focus-within .ig-floating {
   top: 7px;
   font-size: 12px;
-  color: #9aa0aa;
+  color: #737373;
 }
 
 .ig-field input {
@@ -245,13 +246,13 @@
   background: transparent;
   border: none;
   outline: none;
-  color: #fff;
+  color: #262626;
   font-size: 16px;
   padding: 0;
 }
 
 .ig-error {
-  color: #ff6b6b;
+  color: #ed4956;
   font-size: 13px;
   margin: 2px 4px;
 }
@@ -270,15 +271,15 @@
 }
 
 .ig-btn-primary:disabled {
-  background: #1e3f66;
-  color: #6b7d99;
+  background: #4cb5f9;
+  color: #fff;
   cursor: not-allowed;
 }
 
 .ig-link {
   background: none;
   border: none;
-  color: #e8eaed;
+  color: #262626;
   font-size: 15px;
   font-weight: 600;
   margin: 18px auto 0;
@@ -291,8 +292,8 @@
   height: 48px;
   border: none;
   border-radius: 999px;
-  background: #1e222a;
-  color: #d7dae0;
+  background: #efefef;
+  color: #262626;
   font-size: 15px;
   display: flex;
   align-items: center;
@@ -308,8 +309,8 @@
   margin-top: 12px;
   height: 48px;
   border-radius: 999px;
-  border: 1px solid #4d9fff;
-  color: #4d9fff;
+  border: 1px solid #0095f6;
+  color: #0095f6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -319,7 +320,7 @@
 }
 
 .ig-btn-outline:hover {
-  background: rgba(77,159,255,0.1);
+  background: rgba(0,149,246,0.08);
 }
 
 .ig-meta {
@@ -328,55 +329,29 @@
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: #d7dae0;
-}
-
-@media (max-width: 900px) {
-  .ig-login-page { flex-direction: column; }
-  .ig-hero { border-right: none; border-bottom: 1px solid #2a2e36; padding: 36px 20px; }
-  .ig-headline { font-size: 26px; }
-  .ig-card { width: 140px; height: 210px; }
-  .ig-card-center { width: 165px; height: 250px; }
-  .ig-form-side { padding: 32px 20px 48px; }
-  .ig-spacer { height: 32px; }
-}
-
-@media (max-width: 480px) {
-  .ig-hero { padding: 28px 14px; }
-  .ig-glyph { width: 54px; height: 54px; margin-bottom: 18px; }
-  .ig-headline { font-size: 22px; margin-bottom: 32px; }
-  .ig-card { width: 104px; height: 160px; border-radius: 16px; }
-  .ig-card img { border-radius: 16px; }
-  .ig-card-center { width: 126px; height: 190px; }
-  .ig-card-left { transform: rotate(-8deg) translateX(18px); }
-  .ig-card-right { transform: rotate(8deg) translateX(-18px); }
-  .ig-reaction { font-size: 12px; top: -10px; left: -10px; }
-  .ig-star { font-size: 11px; right: -12px; }
-  .ig-heart { font-size: 28px; left: -14px; }
-  .ig-form-side { padding: 28px 16px 40px; }
-  .ig-popup { padding: 24px 30px; margin: 0 16px; }
+  color: #737373;
 }
 
 /* SUCCESS POPUP */
 .ig-popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  padding: 16px;
   animation: igFadeIn 0.25s ease;
 }
 
 .ig-popup {
-  background: #1c212a;
-  border: 1px solid #363c47;
+  background: #fff;
   border-radius: 18px;
   padding: 32px 48px;
   text-align: center;
-  color: #fff;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  color: #262626;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
   animation: igPopIn 0.3s ease;
 }
 
@@ -387,7 +362,7 @@
 
 .ig-popup p {
   margin: 0;
-  color: #9aa0aa;
+  color: #737373;
   font-size: 14px;
 }
 
@@ -413,4 +388,30 @@
 @keyframes igFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .ig-login-page { flex-direction: column; }
+  .ig-hero { border-right: none; border-bottom: 1px solid #dbdbdb; padding: 36px 20px; }
+  .ig-headline { font-size: 26px; }
+  .ig-card { width: 140px; height: 210px; }
+  .ig-card-center { width: 165px; height: 250px; }
+  .ig-form-side { padding: 32px 20px 48px; }
+  .ig-spacer { height: 32px; }
+}
+
+@media (max-width: 480px) {
+  .ig-hero { padding: 28px 14px; }
+  .ig-glyph { width: 54px; height: 54px; margin-bottom: 18px; }
+  .ig-headline { font-size: 22px; margin-bottom: 32px; }
+  .ig-card { width: 104px; height: 160px; border-radius: 16px; }
+  .ig-card img { border-radius: 16px; }
+  .ig-card-center { width: 126px; height: 190px; }
+  .ig-card-left { transform: rotate(-8deg) translateX(18px); }
+  .ig-card-right { transform: rotate(8deg) translateX(-18px); }
+  .ig-reaction { font-size: 12px; top: -10px; left: -10px; }
+  .ig-star { font-size: 11px; right: -12px; }
+  .ig-heart { font-size: 28px; left: -14px; }
+  .ig-form-side { padding: 28px 16px 40px; }
+  .ig-popup { padding: 24px 30px; }
 }

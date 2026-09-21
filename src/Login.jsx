@@ -38,9 +38,8 @@ const Login = () => {
     const value = identifier.trim();
 
     // Firebase email/password auth needs an email.
-    // Accept email directly; otherwise show helpful message.
     if (!value.includes("@")) {
-      setError("For this demo, please log in with your email address.");
+      setError("Please enter your email address.");
       return;
     }
 
