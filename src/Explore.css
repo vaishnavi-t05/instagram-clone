@@ -74,28 +74,6 @@
   margin-top: 40px;
 }
 
-@media (max-width: 900px) {
-  .explore-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .explore-sidebar {
-    flex: 0 0 70px;
-  }
-}
-@media (max-width: 768px) {
-  .explore-sidebar {
-    display: contents;
-  }
-}
-@media (max-width: 600px) {
-  .explore-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-.explore-sidebar {
-  flex: 0 0 90px;
-}
 
-  .explore-main {
-    padding: 12px 8px calc(90px + env(safe-area-inset-bottom));
-  }
-}
+
+

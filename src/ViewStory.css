@@ -238,36 +238,6 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 1000px) {
-  .vs-side {
-    display: none;
-  }
-  .vs-arrow {
-    display: none;
-  }
-}
 
-@media (max-width: 600px) {
-  .vs-logo {
-    width: 84px;
-    top: 12px;
-    left: 12px;
-  }
-  .vs-close {
-    font-size: 26px;
-    top: 8px;
-    right: 14px;
-  }
-  .vs-stage {
-    padding: 0;
-  }
-  .vs-card {
-    width: 100vw;
-    max-height: 100vh;
-    max-height: 100dvh;
-    aspect-ratio: auto;
-    height: 100vh;
-    height: 100dvh;
-    border-radius: 0;
-  }
-}
+
+

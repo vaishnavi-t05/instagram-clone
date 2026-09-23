@@ -201,29 +201,6 @@
   padding: 0;
 }
 
-@media (max-width: 1100px) {
-  .msg-inbox {
-    width: 330px;
-    min-width: 280px;
-  }
-}
 
-@media (max-width: 800px) {
-  .msg-sidebar {
-    display: contents;
-    border: none;
-    width: auto;
-  }
-  .msg-inbox {
-    width: 100%;
-    min-width: 0;
-    border-right: none;
-    padding-bottom: 76px;
-  }
-  .msg-main { display: none; }
-  .msg-page.has-active .msg-inbox { display: none; }
-  .msg-page.has-active .msg-main { display: flex; }
-  .msg-back { display: block; }
-  .msg-thread { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
-  .msg-inbox { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
-}
+
+

@@ -126,11 +126,4 @@
   cursor: pointer;
 }
 
-@media (max-width: 480px) {
-  .switch-card {
-    padding: 32px 22px 26px;
-  }
-  .switch-logo {
-    width: 140px;
-  }
-}
+

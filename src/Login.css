@@ -391,41 +391,8 @@
   to { opacity: 1; }
 }
 
-@media (max-width: 1150px) {
-  .ig-hero {
-    padding: 40px 24px;
-  }
-  .ig-form-side {
-    padding: 40px 24px;
-  }
-  .ig-headline {
-    font-size: clamp(24px, 2.8vw, 34px);
-    margin-bottom: 36px;
-  }
-}
 
-@media (max-width: 900px) {
-  .ig-login-page { flex-direction: column; }
-  .ig-hero { border-right: none; border-bottom: 1px solid #dbdbdb; padding: 36px 20px; }
-  .ig-headline { font-size: 26px; }
-  .ig-card { width: 140px; height: 210px; }
-  .ig-card-center { width: 165px; height: 250px; }
-  .ig-form-side { padding: 32px 20px 48px; }
-  .ig-spacer { height: 32px; }
-}
 
-@media (max-width: 480px) {
-  .ig-hero { padding: 28px 14px; }
-  .ig-glyph { width: 54px; height: 54px; margin-bottom: 18px; }
-  .ig-headline { font-size: 22px; margin-bottom: 32px; }
-  .ig-card { width: 104px; height: 160px; border-radius: 16px; }
-  .ig-card img { border-radius: 16px; }
-  .ig-card-center { width: 126px; height: 190px; }
-  .ig-card-left { transform: rotate(-8deg) translateX(18px); }
-  .ig-card-right { transform: rotate(8deg) translateX(-18px); }
-  .ig-reaction { font-size: 12px; top: -10px; left: -10px; }
-  .ig-star { font-size: 11px; right: -12px; }
-  .ig-heart { font-size: 28px; left: -14px; }
-  .ig-form-side { padding: 28px 16px 40px; }
-  .ig-popup { padding: 24px 30px; }
-}
+
+
+

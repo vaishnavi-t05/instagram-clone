@@ -181,14 +181,4 @@
   justify-content: center;
 }
 
-@media (max-width: 450px) {
-  .signup-page {
-    background: #fff;
-    justify-content: flex-start;
-    padding-top: 40px;
-  }
-  .signup-box {
-    border: none;
-    padding: 20px;
-  }
-}
+

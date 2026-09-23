@@ -201,44 +201,6 @@
   opacity: 0.4;
 }
 
-@media (max-width: 700px) {
-  .pm-overlay {
-    padding: 0;
-  }
-  .pm-modal {
-    flex-direction: column;
-    height: 100vh;
-    height: 100dvh;
-    max-height: none;
-    border-radius: 0;
-  }
-  .pm-media {
-    flex: none;
-    height: 38vh;
-  }
-  .pm-side {
-    max-width: none;
-    flex: 1;
-    min-height: 0;
-  }
-  .pm-close {
-    color: #fff;
-    background: rgba(0, 0, 0, 0.45);
-    border-radius: 50%;
-    width: 34px;
-    height: 34px;
-    font-size: 18px;
-    top: 10px;
-    right: 10px;
-    z-index: 5;
-  }
-}
 
-@media (min-width: 701px) and (max-width: 1100px) {
-  .pm-overlay {
-    padding: 16px;
-  }
-  .pm-modal {
-    max-width: 94vw;
-  }
-}
+
+
