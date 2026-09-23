@@ -96,6 +96,58 @@ video.image {
   font-size: 14px;
 }
 
+/* COMMENTS */
+.view-comments {
+  background: none;
+  border: none;
+  color: #737373;
+  font-size: 14px;
+  padding: 0;
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+.comment-list p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+.no-comments {
+  color: #737373;
+}
+
+.comment-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #efefef;
+}
+
+.comment-form input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #262626;
+  background: transparent;
+}
+
+.comment-form button {
+  background: none;
+  border: none;
+  color: #0095f6;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.comment-form button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 .suggestions h5 {
   font-size: 16px;
 }
@@ -128,6 +180,10 @@ video.image {
 
 .story > div {
   flex: 0 0 auto;
+  width: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .story-user {
@@ -136,7 +192,82 @@ video.image {
   font-size: 12px;
   text-align: center;
   white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #262626;
+}
+
+/* your-story tile */
+.story-mine {
+  position: relative;
+  background: linear-gradient(45deg, #1f9d55, #0e5c30);
+}
+
+.story-add {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0095f6;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  border: 2px solid #fff;
+}
+
+/* mobile-app-only post bits (hidden on desktop) */
+.post-count,
+.post-likedby,
+.post-translate,
+.post-others,
+.post-time,
+.post-loc {
+  display: none;
+}
+
+.post-header-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+  flex: 1;
+}
+
+.post-header-text h5 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.post-loc {
+  font-size: 12px;
+  color: #737373;
+}
+
+.post-more {
+  margin-left: auto;
+  font-size: 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.post-save {
+  margin-left: auto;
+}
+
+.like-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-more-text {
+  color: #737373;
+  cursor: pointer;
 }
 
 .w-25 {
@@ -764,6 +895,21 @@ video.image {
     display: flex;
     justify-content: center;
   }
+  /* fluid posts so nothing overflows at half-window widths */
+  .posts-container {
+    margin-left: 0;
+    width: 100%;
+    max-width: 520px;
+  }
+  .post {
+    width: 100% !important;
+    max-width: 520px;
+  }
+  .image {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+  }
 }
 
 /* ---------- tablets: slimmer feed ---------- */
@@ -777,8 +923,11 @@ video.image {
   }
 }
 
-/* ---------- mobiles: bottom nav bar ---------- */
-@media (max-width: 768px) {
+/* ---------- phones: bottom nav bar ---------- */
+@media (max-width: 600px) {
+  html, body {
+    overflow-x: hidden;
+  }
   .sidebar {
     top: auto !important;
     bottom: 0 !important;
@@ -793,6 +942,7 @@ video.image {
     justify-content: space-around !important;
     background: #fff;
     border-top: 1px solid #dbdbdb;
+    padding-bottom: env(safe-area-inset-bottom) !important;
   }
   .sidebar-top {
     flex-direction: row !important;
@@ -842,21 +992,42 @@ video.image {
   .home-feed {
     width: 100% !important;
     border: none !important;
-    padding-bottom: 76px;
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
   }
   .posts-container {
     margin-top: 12px;
     padding: 0;
   }
   .post {
-    width: 100% !important;
-    max-width: 520px;
     margin-bottom: 22px;
   }
-  .image {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1;
+}
+
+/* ---------- small tablets: phone-size stories ---------- */
+@media (max-width: 768px) {
+  .story {
+    gap: 12px !important;
+    min-height: 104px;
+    padding: 10px 10px 12px !important;
+  }
+  .story > div {
+    width: 84px;
+  }
+  .gradient-border {
+    width: 68px !important;
+    height: 68px !important;
+  }
+  .story-dp {
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+  }
+  .story-user {
+    font-size: 12px !important;
+  }
+  .post-header {
+    padding: 0 10px;
   }
 }
 
@@ -871,5 +1042,238 @@ video.image {
   }
   .post-actions {
     padding: 0 8px;
+  }
+}
+
+/* ---------- profile responsive ---------- */
+.profile-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.profile-logout {
+  display: none;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: #262626;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .profile-layout {
+    padding-left: 0;
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+  .profile-page {
+    max-width: 100%;
+  }
+  .profile-logout {
+    display: block;
+  }
+}
+
+/* ---------- very large desktops: keep feed centered ---------- */
+.home-feed {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+@media (min-width: 1600px) {
+  .home-page {
+    justify-content: center;
+  }
+  .suggest-column {
+    flex: 0 0 320px;
+  }
+}
+
+/* ---------- tiny phones: profile condenses ---------- */
+@media (max-width: 380px) {
+  .m-logo img {
+    height: 28px;
+    max-width: 104px;
+  }
+  .m-search {
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+  .profile-top {
+    gap: 12px;
+  }
+  .profile-picture {
+    width: 68px;
+    height: 68px;
+    min-width: 68px;
+  }
+  .profile-counts strong {
+    font-size: 14px;
+  }
+  .profile-counts span {
+    font-size: 11px;
+  }
+  .follow-btn,
+  .message-btn {
+    font-size: 13px;
+  }
+  .highlights {
+    gap: 12px;
+    padding: 5px 12px 16px;
+  }
+}
+
+/* ============================================================
+   MOBILE HOME — Instagram app look (white theme)
+   ============================================================ */
+@media (max-width: 600px) {
+  .home-page,
+  .home-feed {
+    background: #fff !important;
+    color: #262626;
+  }
+
+  /* top bar */
+  .m-topbar {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    padding: 10px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    border-bottom: 1px solid #efefef;
+  }
+  .m-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .m-logo img {
+    height: 34px;
+    width: auto;
+    max-width: 130px;
+    object-fit: contain;
+  }
+  .m-logo i {
+    font-size: 13px;
+    margin-left: 4px;
+    color: #262626;
+  }
+  .m-search {
+    flex: 1;
+    background: #efefef;
+    color: #737373;
+    border-radius: 999px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    min-width: 0;
+  }
+
+  /* stories + posts */
+  .home-page .story-user {
+    color: #262626;
+  }
+  .home-page .post {
+    margin-bottom: 26px;
+  }
+  .home-page .post-header h5,
+  .home-page .post-more {
+    color: #262626;
+  }
+  .home-page .image {
+    width: 100% !important;
+    margin: 0;
+    border-radius: 0;
+  }
+  .home-page .post-video-wrap {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .home-page video.image {
+    border-radius: 0;
+  }
+  .home-page .post-actions {
+    color: #262626;
+    padding: 8px 8px 0;
+  }
+  /* breathing room between action buttons */
+  .home-page .post-actions .like-button {
+    margin-right: 22px;
+    padding: 6px 2px;
+  }
+  .home-page .post-actions .post-save {
+    margin-right: 0;
+  }
+  .home-page .like-button i {
+    color: #262626;
+    font-size: 28px;
+  }
+  .home-page .like-button i.liked {
+    color: #ff3040;
+  }
+  .home-page .post-count {
+    display: inline;
+    font-size: 15px;
+    color: #262626;
+  }
+  .home-page .dp {
+    width: 36px;
+    height: 36px;
+  }
+  .home-page .post-header-text h5 {
+    font-size: 15px;
+  }
+  .home-page .post-more {
+    font-size: 20px;
+  }
+  .home-page .post-others,
+  .home-page .post-time {
+    display: inline;
+    font-weight: 400;
+    color: #737373;
+  }
+  .home-page .post-loc {
+    display: block;
+  }
+  .home-page .post-likes-line {
+    display: none;
+  }
+  .home-page .post-likedby {
+    display: block;
+    font-size: 14px;
+    margin: 6px 0;
+    color: #262626;
+  }
+  .home-page .post-caption {
+    color: #262626;
+    margin: 2px 0;
+  }
+  .home-page .post-translate {
+    display: block;
+    color: #737373;
+    font-size: 14px;
+    margin: 2px 0;
+  }
+  .home-page .view-comments {
+    color: #737373;
+  }
+  .home-page .comment-form {
+    border-top-color: #efefef;
+  }
+  .home-page .comment-form input {
+    color: #262626;
+  }
+  .home-page .comment-list p {
+    color: #262626;
+  }
+  .home-page .no-comments {
+    color: #737373;
   }
 }

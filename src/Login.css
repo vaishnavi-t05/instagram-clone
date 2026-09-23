@@ -1,6 +1,7 @@
 /* White split login — same layout as before, light theme */
 .ig-login-page {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   background: #ffffff;
   color: #262626;
@@ -388,6 +389,19 @@
 @keyframes igFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@media (max-width: 1150px) {
+  .ig-hero {
+    padding: 40px 24px;
+  }
+  .ig-form-side {
+    padding: 40px 24px;
+  }
+  .ig-headline {
+    font-size: clamp(24px, 2.8vw, 34px);
+    margin-bottom: 36px;
+  }
 }
 
 @media (max-width: 900px) {

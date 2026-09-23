@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Sidebar from "./Sidebar";
+import { auth } from "./firebase";
 import "./Reels.css";
 
 const ALL_REELS = [
@@ -11,6 +12,11 @@ const ALL_REELS = [
     avatar: "https://i.pravatar.cc/100?img=13",
     audio: "Original audio • nature_explorer",
     tags: "#nature #explore #sunset #bestfriends #kashmir",
+    seedComments: [
+      { user: "gugan", text: "Kashmir 😍" },
+      { user: "spidzz_pzz", text: "Take me there!" },
+      { user: "lunxzz_", text: "Beautiful place" },
+    ],
     likes: "47.1K",
     comments: "70",
     shares: "1,030",
@@ -23,6 +29,11 @@ const ALL_REELS = [
     avatar: "https://i.pravatar.cc/100?img=47",
     audio: "Original audio • luxury_villa",
     tags: "#luxury #villa #travel #trendingreels",
+    seedComments: [
+      { user: "elle", text: "Luxury goals 🏝️" },
+      { user: "Edward", text: "Wow 😲" },
+      { user: "emma_watson", text: "Dream vacation" },
+    ],
     likes: "12.4K",
     comments: "210",
     shares: "890",
@@ -35,6 +46,11 @@ const ALL_REELS = [
     avatar: "https://i.pravatar.cc/100?img=32",
     audio: "Trending sound • bmw_lover",
     tags: "#bmw #lavenderbmw #ooty #trendingreels #fyp",
+    seedComments: [
+      { user: "lunxzz_", text: "Beast 🔥" },
+      { user: "spidzz_pzz", text: "Ooty ride soon?" },
+      { user: "Edward", text: "Lavender looks sick 💜" },
+    ],
     likes: "8.2K",
     comments: "95",
     shares: "410",
@@ -46,6 +62,11 @@ const ALL_REELS = [
     avatar: "https://i.pravatar.cc/100?img=59",
     audio: "Original audio • buskerala_fans",
     tags: "#buskerala #tusker #forza #bikersofinstagram",
+    seedComments: [
+      { user: "Edward", text: "Classic! 🚌" },
+      { user: "lunxzz_", text: "Kerala vibes" },
+      { user: "elle", text: "Nice capture" },
+    ],
     likes: "21.3K",
     comments: "340",
     shares: "2,110",
@@ -57,6 +78,11 @@ const ALL_REELS = [
     avatar: "https://i.pravatar.cc/100?img=68",
     audio: "Trending sound • m4_competition",
     tags: "#m4competition #bmwm4 #carlovers",
+    seedComments: [
+      { user: "spidzz_pzz", text: "M4 😍🔥" },
+      { user: "Edward", text: "That launch!" },
+      { user: "lunxzz_", text: "Dream machine" },
+    ],
     likes: "15.7K",
     comments: "180",
     shares: "960",
@@ -68,6 +94,11 @@ const ALL_REELS = [
     avatar: "https://i.pravatar.cc/100?img=25",
     audio: "Rathinamo • trending song",
     tags: "#rathinamo #trending #viral #fyp",
+    seedComments: [
+      { user: "elle", text: "This song ❤️" },
+      { user: "Edward", text: "On loop 🎧" },
+      { user: "emma_watson", text: "Fav!" },
+    ],
     likes: "32.9K",
     comments: "512",
     shares: "3,040",
@@ -91,6 +122,29 @@ const ReelCard = ({ reel, muted, onToggleMute }) => {
   const [saved, setSaved] = useState(false);
   const [following, setFollowing] = useState(false);
   const [playing, setPlaying] = useState(true);
+  const [showComments, setShowComments] = useState(false);
+  const [reelComments, setReelComments] = useState(() => [...(reel.seedComments || [])]);
+  const [likedReelComments, setLikedReelComments] = useState({});
+  const [draft, setDraft] = useState("");
+
+  const myName = () =>
+    auth.currentUser?.displayName ||
+    auth.currentUser?.email?.split("@")[0] ||
+    "you";
+
+  const addReelComment = (e) => {
+    e.preventDefault();
+    const text = draft.trim();
+    if (!text) return;
+    setReelComments((c) => [...c, { user: myName(), text, time: "now", likes: 0 }]);
+    setDraft("");
+  };
+
+  const toggleReelCommentLike = (i) =>
+    setLikedReelComments((l) => ({ ...l, [i]: !l[i] }));
+
+  const commentAvatar = (user) =>
+    `https://i.pravatar.cc/100?u=${user}`;
 
   // Attach ref + force muted property (React's muted attr alone
   // doesn't always apply, which blocks autoplay and freezes video)
@@ -214,7 +268,7 @@ const ReelCard = ({ reel, muted, onToggleMute }) => {
           <i className={`bi ${liked ? "bi-heart-fill" : "bi-heart"}`} />
           <span>{reel.likes}</span>
         </button>
-        <button className="reel-act">
+        <button className="reel-act" onClick={() => setShowComments(true)}>
           <i className="bi bi-chat" />
           <span>{reel.comments}</span>
         </button>
@@ -234,6 +288,62 @@ const ReelCard = ({ reel, muted, onToggleMute }) => {
         <img src={reel.avatar} alt="" className="reel-thumb" />
       </div>
       </div>
+
+      {/* comments side panel */}
+      {showComments && (
+        <div className="reel-comments-side">
+          <div className="reel-comments-head">
+            <button onClick={() => setShowComments(false)} aria-label="Close">
+              ✕
+            </button>
+            <b>Comments</b>
+            <span />
+          </div>
+          <div className="reel-comments-list">
+            {reelComments.map((c, i) => {
+              const liked = !!likedReelComments[i];
+              const likeCount = (c.likes || 2) + (liked ? 1 : 0);
+              return (
+                <div className="reel-comment-row" key={i}>
+                  <img src={commentAvatar(c.user)} alt="" />
+                  <div>
+                    <p>
+                      <b>{c.user}</b>{" "}
+                      <span className="reel-comment-time">{c.time || "11h"}</span>
+                    </p>
+                    <p>{c.text}</p>
+                    <span className="reel-comment-meta">
+                      {likeCount} likes · <span className="pm-reply">Reply</span>
+                    </span>
+                    <span className="reel-view-replies">— View all 1 replies</span>
+                  </div>
+                  <button
+                    className={`pm-heart ${liked ? "liked" : ""}`}
+                    onClick={() => toggleReelCommentLike(i)}
+                    aria-label="Like comment"
+                  >
+                    <i className={`bi ${liked ? "bi-heart-fill" : "bi-heart"}`} />
+                  </button>
+                </div>
+              );
+            })}
+            {reelComments.length === 0 && (
+              <p className="reel-no-comments">No comments yet. Be the first!</p>
+            )}
+          </div>
+          <form className="reel-comment-bar" onSubmit={addReelComment}>
+            <img src={commentAvatar(myName())} alt="" />
+            <div className="reel-comment-pill">
+              <input
+                placeholder="Add a comment..."
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+              />
+              <i className="bi bi-emoji-smile" />
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
