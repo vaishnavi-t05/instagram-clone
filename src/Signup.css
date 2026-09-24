@@ -182,3 +182,18 @@
 }
 
 
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 767px) {
+  .signup-page { background: #fff; justify-content: flex-start; padding: 24px 0; }
+  .signup-box { border: none; padding: 24px 24px 16px; }
+  .signup-login { padding: 14px 24px; }
+  .signup-form input { font-size: 16px; height: 44px; } /* 16px stops iOS zoom */
+  .signup-btn, .signup-fb { height: 42px; }
+}
+@media (max-width: 480px) {
+  .signup-popup { padding: 24px; max-width: 92vw; }
+}
+@media (max-width: 360px) {
+  .signup-box { padding: 20px 16px 12px; }
+}

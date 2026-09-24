@@ -396,3 +396,31 @@
 
 
 
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1199px) {
+  .ig-hero { padding: 40px 24px; }
+  .ig-card        { width: 150px; height: 224px; }
+  .ig-card-left   { width: 138px; height: 200px; }
+  .ig-card-center { width: 170px; height: 256px; }
+  .ig-card-right  { width: 138px; height: 200px; }
+}
+@media (max-width: 991px) {
+  .ig-login-page { flex-direction: column; }
+  .ig-hero { flex: none; border-right: none; border-bottom: 1px solid #dbdbdb; padding: 32px 20px; }
+  .ig-glyph { width: 56px; height: 56px; margin: 0 auto 18px; }
+  .ig-headline { margin-bottom: 30px; }
+  .ig-form-side { flex: 1; padding: 32px 20px 48px; }
+  .ig-spacer { height: 40px; }
+}
+@media (max-width: 767px) {
+  .ig-hero { display: none; }
+  .ig-form-side { padding: 40px 20px; min-height: 100dvh; }
+  .ig-form-wrap { max-width: 400px; }
+  .ig-popup { padding: 28px; }
+}
+@media (max-width: 480px) {
+  .ig-form-side { padding: 28px 16px; }
+  .ig-field { border-radius: 12px; }
+  .ig-popup { padding: 24px; max-width: 92vw; }
+}

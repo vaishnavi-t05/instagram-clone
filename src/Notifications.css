@@ -155,3 +155,24 @@
 .notif-empty { color: #737373; font-size: 14px; padding: 10px; }
 
 
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 991px) {
+  .notif-panel { width: 380px; }
+}
+@media (max-width: 767px) {
+  .notif-panel {
+    left: 0; width: 100%; max-width: 100%;
+    height: 100dvh;
+    border-radius: 0; border-right: none;
+    padding: 16px 14px 40px;
+    box-shadow: none;
+  }
+  .notif-btn { padding: 8px 14px; }
+}
+@media (max-width: 480px) {
+  .notif-header h2 { font-size: 22px; }
+  .notif-follow-req, .notif-item { gap: 10px; }
+  .notif-btn { padding: 7px 12px; font-size: 13px; }
+  .notif-btn.following { min-width: 0; }
+}

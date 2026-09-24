@@ -896,3 +896,317 @@ video.image {
 /* ============================================================
    MOBILE HOME — Instagram app look (white theme)
    ============================================================ */
+
+
+/* ==========================================================================
+   RESPONSIVE (appended - everything above is your original, unchanged)
+   Desktop >=1200 | Small desktop <=1199 | Tablet <=991 | Phone <=767
+   | Small phone <=480 | Tiny <=360
+   !important is used on layout rules so Bootstrap classes (col-*, w-*, d-flex)
+   can't override them.
+   ========================================================================== */
+
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video { max-width: 100%; }
+
+/* short screens (landscape phones / small laptops): rail scrolls */
+@media (max-height: 700px) {
+  .sidebar-rail { overflow-y: auto; scrollbar-width: none; gap: 6px; }
+  .sidebar-rail::-webkit-scrollbar { display: none; }
+}
+
+/* ---------- <= 1199px : small desktop / laptop ---------- */
+@media (max-width: 1199px) {
+  /* right suggestions column hidden (like instagram) */
+  .suggestions,
+  .w-25,
+  .w-30:has(.suggestions) { display: none !important; }
+
+  /* left column shrinks to the 72px rail width */
+  .sidebar-column,
+  .w-20 {
+    flex: 0 0 72px !important;
+    width: 72px !important;
+    max-width: 72px !important;
+    min-width: 72px !important;
+  }
+
+  /* feed takes the rest and stays centered */
+  .feed-column {
+    flex: 1 1 0% !important;
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    border-right: none;
+  }
+  .home-feed { width: 100%; justify-content: center; }
+  .posts-container { margin: 30px auto 0 !important; }
+}
+
+/* ---------- <= 991px : tablet ---------- */
+@media (max-width: 991px) {
+  .posts-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 0 12px;
+    margin: 24px auto 0 !important;
+  }
+  .post { width: 100% !important; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .image,
+  video.image { width: 100% !important; height: auto !important; aspect-ratio: 1 / 1; }
+  .story { max-width: 500px; margin: 0 auto; }
+  .profile-page { max-width: 640px; }
+}
+
+/* ---------- <= 767px : phone (instagram mobile app layout) ---------- */
+@media (max-width: 767px) {
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
+
+  /* ----- bottom navigation bar (white, like instagram mobile) ----- */
+  .sidebar-rail {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: calc(56px + env(safe-area-inset-bottom, 0px));
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0;
+    padding: 0 4px env(safe-area-inset-bottom, 0px);
+    background: #fff;
+    border-right: none;
+    border-top: 1px solid #dbdbdb;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+  .sidebar-rail::-webkit-scrollbar { display: none; }
+
+  /* flatten top/bottom groups into one row (beats bootstrap flex utilities) */
+  .sidebar-rail .sidebar-top,
+  .sidebar-rail .sidebar-bottom {
+    display: contents !important;
+  }
+  .sidebar-rail .sidebar-item {
+    flex: 1 0 44px;
+    width: auto;
+    height: 48px;
+    color: #262626;
+  }
+  .sidebar-rail .sidebar-item i {
+    font-size: 24px;
+    min-width: 0;
+    color: #262626;
+  }
+  .sidebar-rail .sidebar-icon-wrap { min-width: 0; }
+  .sidebar-rail .sidebar-badge { border-color: #fff; top: -4px; right: -6px; }
+  .sidebar-rail .sidebar-dot { right: calc(50% - 14px); }
+  .sidebar-rail .sidebar-ava { border-color: #dbdbdb; }
+
+  /* desktop-only pieces of the rail */
+  .sidebar-rail .sidebar-item.logo,
+  .sidebar-rail .logo-text,
+  .sidebar-rail .sidebar-spacer,
+  .sidebar-rail .sidebar-logout,
+  .sidebar-rail .sidebar-label,
+  .sidebar-label { display: none !important; }
+
+  /* left column collapses (rail is position:fixed, so it stays visible) */
+  .sidebar-column,
+  .w-20 {
+    flex: 0 0 0 !important;
+    width: 0 !important;
+    max-width: 0 !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  /* ----- home feed: full width ----- */
+  .feed-column,
+  .home-feed {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .home-feed { display: block; }
+  .posts-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .post { width: 100% !important; max-width: 100% !important; margin: 0 0 18px !important; }
+  .post-header { padding: 0 12px; margin-bottom: 10px; }
+  .dp { width: 32px; height: 32px; }
+  .post > *:not(.post-video-wrap):not(.image):not(img):not(video):not(.post-header) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .image,
+  video.image { width: 100% !important; max-width: 100% !important; height: auto !important; aspect-ratio: 1 / 1; }
+
+  /* mobile-only post details (hidden on desktop above) */
+  .post-count, .post-likedby, .post-translate,
+  .post-others, .post-time, .post-loc { display: block; }
+
+  .comment-form input { font-size: 16px; }
+
+  /* stories */
+  .story { max-width: 100%; padding: 10px 10px 12px; gap: 10px; margin: 0; }
+  .story > div { width: 72px; }
+
+  /* ----- profile ----- */
+  .profile-layout { padding-left: 0 !important; padding-bottom: 60px; }
+  .profile-page { max-width: 100%; padding-bottom: 20px; }
+  .profile-header { padding: 0 14px; }
+  .profile-logout { display: inline-flex; }
+  .profile-info { padding: 14px; }
+  .profile-top { gap: 20px; }
+  .profile-picture { width: 80px; height: 80px; min-width: 80px; }
+  .profile-counts strong { font-size: 16px; }
+  .profile-counts span { font-size: 13px; }
+  .highlights { padding: 5px 14px 16px; gap: 16px; }
+  .highlight-circle { width: 60px; height: 60px; }
+  .profile-tabs div { font-size: 22px; }
+  .profile-posts { gap: 2px; }
+}
+
+/* ---------- <= 480px : small phones ---------- */
+@media (max-width: 480px) {
+  .story-dp { width: 52px; height: 52px; min-width: 52px; min-height: 52px; }
+  .gradient-border { width: 60px; height: 60px; }
+  .story > div { width: 68px; }
+  .profile-top { gap: 14px; }
+  .profile-buttons { gap: 5px; }
+  .follow-btn, .message-btn { font-size: 13px; }
+}
+
+/* ---------- <= 360px : tiny phones ---------- */
+@media (max-width: 360px) {
+  .profile-picture { width: 68px; height: 68px; min-width: 68px; }
+  .profile-counts strong { font-size: 15px; }
+  .profile-counts span { font-size: 12px; }
+  .profile-bio { font-size: 13px; }
+  .highlight { min-width: 62px; }
+  .highlight-circle { width: 54px; height: 54px; }
+  .sidebar-rail .sidebar-item i { font-size: 22px; }
+}
+
+
+/* ==========================================================================
+   MOBILE BOTTOM NAVIGATION (Instagram mobile style)
+   Your sidebar renders as  .sidebar > .sidebar-top / .sidebar-bottom > .sidebar-item
+   so this targets .sidebar itself. !important is required because the sidebar is
+   positioned/stacked by Bootstrap utility classes (position-fixed, flex-column, top-0 ...).
+   ========================================================================== */
+@media (max-width: 767px) {
+
+  .sidebar {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: calc(56px + env(safe-area-inset-bottom, 0px)) !important;
+    margin: 0 !important;
+    padding: 0 4px env(safe-area-inset-bottom, 0px) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    background: #fff;                 /* dark theme? use #000 here and #fff on icons below */
+    border-top: 1px solid #dbdbdb;
+    border-right: none;
+    box-shadow: none;
+    transform: none;
+    overflow: hidden;
+    z-index: 1000;
+  }
+
+  /* flatten both groups so every icon sits in the same row */
+  .sidebar .sidebar-top,
+  .sidebar .sidebar-bottom {
+    display: contents !important;
+  }
+
+  /* each icon = equal share of the bar */
+  .sidebar .sidebar-item {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: auto !important;
+    height: 48px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: center;
+    color: #262626;
+  }
+  .sidebar .sidebar-item i,
+  .sidebar .bi {
+    font-size: 24px;
+    min-width: 0 !important;
+    margin: 0 !important;             /* cancels the global .bi { margin-right:10px } */
+    color: #262626;
+  }
+  .sidebar .sidebar-icon-wrap { min-width: 0; }
+  .sidebar .sidebar-profile,
+  .sidebar .sidebar-ava { width: 26px; height: 26px; margin: 0 !important; }
+
+  /* badges / dots stay on the icon */
+  .sidebar .sidebar-badge { top: 2px; right: calc(50% - 20px); border-color: #fff; }
+  .sidebar .sidebar-dot   { top: 8px; right: calc(50% - 14px); }
+
+  /* desktop-only pieces */
+  .sidebar .logo-text,
+  .sidebar .sidebar-item.logo,
+  .sidebar .sidebar-label,
+  .sidebar .sidebar-spacer,
+  .sidebar .sidebar-logout,
+  .sidebar .sidebar-item:has(.bi-threads),
+  .sidebar .sidebar-item:has(.bi-box-arrow-right),
+  .sidebar .sidebar-item:has(.bi-box-arrow-in-right),
+  .sidebar .sidebar-item:has(.bi-box-arrow-left),
+  .sidebar .sidebar-item:has(.bi-box-arrow-up-right),
+  .sidebar .sidebar-item:has(.bi-door-open) {
+    display: none !important;
+  }
+
+  /* keep the page content clear of the bar */
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
+}
+
+
+/* ==========================================================================
+   MOBILE POST HEADER FIX - name / "and N others" / time on ONE line
+   ("and 5 others" and "2mo" were being forced to display:block above)
+   ========================================================================== */
+@media (max-width: 767px) {
+  .post-others,
+  .post-time { display: inline !important; }
+
+  .post-header-text { min-width: 0; }
+  .post-header-text h5,
+  .post-header h5 {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .post-header-text h5 > *,
+  .post-header h5 > * { display: inline; }
+
+  /* location stays on its own line under the name */
+  .post-loc {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

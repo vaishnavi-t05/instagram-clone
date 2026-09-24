@@ -127,3 +127,16 @@
 }
 
 
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 767px) {
+  .switch-card { padding: 36px 24px 26px; max-height: 94dvh; overflow-y: auto; }
+  .switch-logo { width: 140px; margin-bottom: 20px; }
+  .switch-form input[type="text"],
+  .switch-form input[type="password"] { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .switch-card { padding: 32px 18px 22px; }
+  .switch-form input[type="text"],
+  .switch-form input[type="password"] { height: 44px; }
+}

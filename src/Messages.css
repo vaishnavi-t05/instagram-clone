@@ -204,3 +204,61 @@
 
 
 
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 991px) {
+  .msg-sidebar { width: 72px; flex: 0 0 72px; }
+  .msg-sidebar .logo-text { width: 48px; }
+  .msg-inbox { width: 320px; min-width: 280px; }
+}
+@media (max-width: 767px) {
+  .msg-page { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); box-sizing: border-box; }
+
+  /* sidebar -> bottom bar */
+  .msg-sidebar {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    width: 100%; flex: none;
+    height: calc(56px + env(safe-area-inset-bottom, 0px));
+    border-right: none; border-top: 1px solid #dbdbdb;
+    background: #fff;
+    z-index: 1000;
+  }
+  .msg-sidebar .sidebar {
+    height: 100%;
+    padding: 0 4px env(safe-area-inset-bottom, 0px);
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background: #fff;
+  }
+  .msg-sidebar .sidebar-top,
+  .msg-sidebar .sidebar-bottom { display: contents !important; }
+  .msg-sidebar .logo-text,
+  .msg-sidebar .sidebar-item.logo,
+  .msg-sidebar .sidebar-label,
+  .msg-sidebar .sidebar-spacer,
+  .msg-sidebar .sidebar-logout { display: none !important; }
+  .msg-sidebar .sidebar-item { flex: 1 0 44px; width: auto; color: #262626; }
+  .msg-sidebar .sidebar-item i { font-size: 24px; min-width: 0; color: #262626; }
+  .msg-sidebar .sidebar-icon-wrap { min-width: 0; }
+
+  /* one pane at a time: inbox list, or the open chat */
+  .msg-inbox { width: 100%; min-width: 0; flex: 1; border-right: none; padding: 14px 10px; }
+  .msg-main { width: 100%; min-width: 0; }
+  .msg-page:has(.msg-thread) .msg-inbox { display: none; }
+  .msg-page:not(:has(.msg-thread)) .msg-main { display: none; }
+  .msg-back { display: inline-block; }
+  .msg-thread-head { padding: 10px 12px; }
+  .msg-bubbles { padding: 12px; }
+  .bubble { max-width: 80%; }
+  .msg-send { padding: 10px 12px; }
+  .msg-send input,
+  .msg-search input { min-width: 0; font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .msg-inbox-top { font-size: 18px; }
+  .msg-ava-wrap img { width: 46px; height: 46px; }
+}
+@media (max-width: 360px) {
+  .bubble { max-width: 88%; }
+}

@@ -155,3 +155,11 @@
     border-right-color: var(--border);
   }
 }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 767px) {
+  #next-steps { flex-direction: column; }
+  #docs { border-right: none; border-bottom: 1px solid var(--border); }
+  #next-steps > div { padding: 24px 16px; }
+  #next-steps ul { flex-wrap: wrap; }
+}

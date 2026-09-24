@@ -22,13 +22,13 @@ console.log(stories);
 
         </div>
       {/* Your story tile (mobile app style) */}
-      <div className='mx-1 d-flex flex-column align-items-center' onClick={()=>{if(stories.length>0) navigate(`/story/1/${stories.length}`)}}>
+      {/* <div className='mx-1 d-flex flex-column align-items-center' onClick={()=>{if(stories.length>0) navigate(`/story/1/${stories.length}`)}}>
         <div className='gradient-border story-mine'>
           <img src={myProfile.profilePic} alt="dp" className='story-dp'/>
           <span className='story-add'>+</span>
         </div>
         <p className='story-user'>Your story</p>
-      </div>
+      </div> */}
       {stories. length > 0 ? (
           stories.map((story)=>(
             <div key={story.id} className='mx-1 d-flex flex-column align-items-center' onClick={()=>{navigate(`/story/${story.id}/${tot}`)}}>

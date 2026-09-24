@@ -77,3 +77,29 @@
 
 
 
+
+/* ===== RESPONSIVE ===== */
+/* desktop: content sits right of the fixed 72px rail */
+@media (min-width: 768px) {
+  .explore-page { padding-left: 72px; }
+}
+@media (max-width: 1199px) {
+  .explore-main { padding: 16px 16px 32px; }
+}
+@media (max-width: 991px) {
+  .explore-grid { grid-template-columns: repeat(3, 1fr); }
+  .explore-search { max-width: 100%; }
+}
+@media (max-width: 767px) {
+  .explore-page { padding-bottom: 60px; }
+  .explore-main { padding: 10px 2px 24px; }
+  .explore-search { margin: 0 10px 12px; padding: 10px 14px; border-radius: 10px; }
+  .explore-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .explore-tile { border-radius: 0; }
+}
+@media (max-width: 480px) {
+  .explore-empty { margin-top: 24px; }
+}
+@media (max-width: 360px) {
+  .explore-grid { grid-template-columns: repeat(2, 1fr); }
+}

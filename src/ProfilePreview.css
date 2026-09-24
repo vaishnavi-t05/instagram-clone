@@ -110,3 +110,11 @@
 }
 
 
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 767px) {
+  .pp-card { max-height: 92dvh; overflow-y: auto; }
+}
+@media (max-width: 360px) {
+  .pp-card { padding: 16px; }
+}
