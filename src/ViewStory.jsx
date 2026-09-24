@@ -98,7 +98,7 @@ const ViewStory = () => {
 
               <div className="vs-head">
                 <img src={story.profilePic} alt="" className="vs-ava" />
-                <b>{story.username}</b>
+                <b style={{ color: "#fff" }}>{story.username}</b>
                 <span className="vs-time">{timeFor(story.id)}</span>
                 <span className="vs-spacer" />
                 <button onClick={() => setPaused((p) => !p)} aria-label="Pause">

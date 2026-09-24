@@ -232,8 +232,8 @@ export const stories = [
   {
     id: 8,
     username: "spidzz_pzz",
-    profilePic: "/assets/hero.png",
+    profilePic: "/assets/spidey.jpg",
     location: "Coimbatore, India",
-    image: "/assets/pics1.jpg",
+    image: "/assets/splov.jpg",
   },
 ];
