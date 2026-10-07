@@ -157,31 +157,6 @@ const ReelCard = ({ reel, muted, onToggleMute }) => {
     if (videoRef.current) videoRef.current.muted = muted;
   }, [muted]);
 
-  // Play only the reel currently on screen, pause the rest
-  useEffect(() => {
-    const video = videoRef.current;
-    const wrap = wrapRef.current;
-    if (!video || !wrap) return;
-    const tryPlay = () => {
-      // respect global sound setting; if unmuted autoplay is blocked,
-      // fall back to muted so the video still plays
-      video.play().catch(() => {
-        video.muted = true;
-        video.play().catch(() => {});
-      });
-    };
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) tryPlay();
-        else video.pause();
-      },
-      { threshold: 0.6 }
-    );
-    obs.observe(wrap);
-    tryPlay();
-    return () => obs.disconnect();
-  }, []);
-
   const togglePlay = () => {
     const v = videoRef.current;
     if (!v) return;
@@ -196,7 +171,7 @@ const ReelCard = ({ reel, muted, onToggleMute }) => {
   };
 
   return (
-    <div className="reel-row" ref={wrapRef}>
+    <div className="reel-row" ref={wrapRef} data-reel-id={reel.id}>
       {/* video + actions grouped so the rail sits next to the video */}
       <div className="reel-stage">
       {/* video centered */}
@@ -360,6 +335,37 @@ const Reels = () => {
       return !m;
     });
   };
+
+  // SINGLE playback owner: only the on-screen reel plays, the rest
+  // stay paused — so you never hear two reels at once. Sound on/off
+  // is one global switch (persisted) applied to every reel.
+  useEffect(() => {
+    const playRow = (row) => {
+      const video = row.querySelector("video");
+      if (!video) return;
+      video.play().catch(() => {
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    };
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target.querySelector("video");
+          if (!video) return;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            playRow(entry.target);
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: [0, 0.6, 1] }
+    );
+    const rows = document.querySelectorAll(".reels-feed .reel-row");
+    rows.forEach((r) => obs.observe(r));
+    return () => obs.disconnect();
+  }, [reels]);
   return (
     <div className="d-flex reels-page">
       <div className="w-20 sidebar-column">
