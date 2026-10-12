@@ -1,42 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Sidebar from "./Sidebar";
+import { CHATS } from "./chatData";
 import "./Messages.css";
 
+// Song notes — tapping one plays its audio (from local clips, so it
+// works offline). Only one song plays at a time.
 const NOTES = [
-  { id: 1, user: "Edward", img: "https://i.pravatar.cc/100?img=11", note: "Wildest dr... ChipM 💜💜" },
-  { id: 2, user: "spidzz_pzz", img: "https://i.pravatar.cc/100?img=13", note: "The One Sai Abhyankkar 🐣🌙 33" },
-  { id: 3, user: "Sivaa!!! 💖💌", img: "https://i.pravatar.cc/100?img=59", note: "Oday Oday Vijay Prakash ... 💖✨😍" },
-  { id: 4, user: "Dhanush", img: "https://i.pravatar.cc/100?img=68", note: "Life Go Oliver" },
-];
-
-const CHATS = [
-  {
-    id: 1, name: "IX KINGDOM ⚔⚔ 📌", preview: "☆pr@©6€n☆ removed you from the gro... · 1y",
-    img: "https://i.pravatar.cc/100?img=5", muted: true, unread: false, online: false,
-  },
-  {
-    id: 2, name: "ASHOK SIR PAYALUGA.....At 🌅", preview: "❄ sent an attachment. · 58m",
-    img: "https://i.pravatar.cc/100?img=12", muted: false, unread: true, online: true,
-  },
-  {
-    id: 3, name: "lunxzz_", preview: "3 new messages · 1h",
-    img: "https://i.pravatar.cc/100?img=47", muted: false, unread: true, online: false,
-    bold: true,
-  },
-  {
-    id: 4, name: "Praveen", preview: "2 new messages · 1h",
-    img: "https://i.pravatar.cc/100?img=15", muted: false, unread: true, online: false,
-    bold: true,
-  },
-  {
-    id: 5, name: "BUD!🏠💠", preview: "4 new messages · 1h",
-    img: "https://i.pravatar.cc/100?img=32", muted: true, unread: true, online: true,
-    bold: true, greenBg: true,
-  },
-  {
-    id: 6, name: "spidzz_pzz", preview: "You're now friends. Say hi! · 2h",
-    img: "https://i.pravatar.cc/100?img=13", muted: false, unread: false, online: false,
-  },
+  { id: 1, user: "Edward", img: "https://i.pravatar.cc/100?img=11", note: "Wildest dr... ChipM 💜💜", src: "/reels/reel6.mp4" },
+  { id: 2, user: "spidzz_pzz", img: "https://i.pravatar.cc/100?img=13", note: "The One Sai Abhyankkar 🐣🌙 33", src: "/reels/reel1.mp4" },
+  { id: 3, user: "Sivaa!!! 💖💌", img: "https://i.pravatar.cc/100?img=59", note: "Oday Oday Vijay Prakash ... 💖✨😍", src: "/reels/reel3.mp4" },
+  { id: 4, user: "Dhanush", img: "https://i.pravatar.cc/100?img=68", note: "Life Go Oliver", src: "/reels/reel5.mp4" },
 ];
 
 const Messages = () => {
@@ -47,6 +20,33 @@ const Messages = () => {
     3: [{ from: "them", text: "hey bro 👋" }, { from: "them", text: "seen my story?" }],
     4: [{ from: "them", text: "2 new messages" }],
   });
+  const [playingId, setPlayingId] = useState(null);
+  const audioRef = useRef(null);
+
+  // stop the song when leaving the page
+  useEffect(() => {
+    const audio = audioRef.current;
+    return () => {
+      if (audio) audio.pause();
+    };
+  }, []);
+
+  const toggleNote = (note) => {
+    if (playingId === note.id) {
+      audioRef.current?.pause();
+      setPlayingId(null);
+      return;
+    }
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+      audioRef.current.onended = () => setPlayingId(null);
+    }
+    audioRef.current.src = note.src;
+    audioRef.current
+      .play()
+      .then(() => setPlayingId(note.id))
+      .catch(() => setPlayingId(null));
+  };
 
   const filtered = CHATS.filter((c) =>
     c.name.toLowerCase().includes(search.toLowerCase())
@@ -86,13 +86,31 @@ const Messages = () => {
         </div>
 
         <div className="msg-notes">
-          {NOTES.map((n) => (
-            <div key={n.id} className="msg-note-item">
-              <div className="msg-note-bubble">{n.note}</div>
-              <img src={n.img} alt={n.user} />
-              <span>{n.user}</span>
-            </div>
-          ))}
+          {NOTES.map((n) => {
+            const playing = playingId === n.id;
+            return (
+              <div
+                key={n.id}
+                className="msg-note-item"
+                onClick={() => toggleNote(n)}
+                style={{ cursor: "pointer" }}
+              >
+                <div
+                  className="msg-note-bubble"
+                  style={
+                    playing
+                      ? { background: "#0095f6", color: "#fff" }
+                      : undefined
+                  }
+                >
+                  {playing ? "⏸ " : "♪ "}
+                  {n.note}
+                </div>
+                <img src={n.img} alt={n.user} />
+                <span>{n.user}</span>
+              </div>
+            );
+          })}
         </div>
 
         <div className="msg-row-head">
