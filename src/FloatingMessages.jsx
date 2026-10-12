@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CHATS } from "./chatData";
 
@@ -14,7 +15,7 @@ const FloatingMessages = () => {
   const unread = CHATS.filter((c) => c.unread).length;
   const faces = CHATS.slice(0, 3);
 
-  return (
+  return createPortal(
     <div
       onClick={() => navigate("/messages")}
       style={{
@@ -95,7 +96,8 @@ const FloatingMessages = () => {
           •••
         </span>
       </span>
-    </div>
+    </div>,
+    document.body
   );
 };
 
