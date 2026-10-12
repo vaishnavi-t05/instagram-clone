@@ -3,7 +3,6 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import { useNavigate } from "react-router-dom";
 import Notifications from "./Notifications";
-import FloatingMessages from "./FloatingMessages";
 
 const Sidebar = () => {
   const [showNotif, setShowNotif] = useState(false);
@@ -170,8 +169,6 @@ const Sidebar = () => {
       </div>
 
       {showNotif && <Notifications onClose={() => setShowNotif(false)} />}
-
-      <FloatingMessages />
 
     </div>
   );
